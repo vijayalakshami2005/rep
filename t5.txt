@@ -1,0 +1,457 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "e7be8500-293b-4759-90fa-5780b3849574",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>employe id</th>\n",
+       "      <th>year</th>\n",
+       "      <th>experince</th>\n",
+       "      <th>salary</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>2000</td>\n",
+       "      <td>9</td>\n",
+       "      <td>10000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>2008</td>\n",
+       "      <td>8</td>\n",
+       "      <td>20000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>3</td>\n",
+       "      <td>1098</td>\n",
+       "      <td>7</td>\n",
+       "      <td>30000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>4</td>\n",
+       "      <td>2009</td>\n",
+       "      <td>7</td>\n",
+       "      <td>40000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>5</td>\n",
+       "      <td>2006</td>\n",
+       "      <td>8</td>\n",
+       "      <td>50000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   employe id  year  experince  salary\n",
+       "0           1  2000          9   10000\n",
+       "1           2  2008          8   20000\n",
+       "2           3  1098          7   30000\n",
+       "3           4  2009          7   40000\n",
+       "4           5  2006          8   50000"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "data={'employe id':[1,2,3,4,5],\n",
+    "      'year':[2000,2008,1098,2009,2006],\n",
+    "      'experince':[9,8,7,7,8],\n",
+    "      'salary':[10000,20000,30000,40000,50000]}\n",
+    "df=pd.DataFrame(data)\n",
+    "df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "171c8bbe-c1b4-4ba6-ad7e-4bc6a0bc2cf6",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>employe id</th>\n",
+       "      <th>year</th>\n",
+       "      <th>experince</th>\n",
+       "      <th>salary</th>\n",
+       "      <th>deparment</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>2000</td>\n",
+       "      <td>9</td>\n",
+       "      <td>10000</td>\n",
+       "      <td>cc</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>2008</td>\n",
+       "      <td>8</td>\n",
+       "      <td>20000</td>\n",
+       "      <td>cs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>3</td>\n",
+       "      <td>1098</td>\n",
+       "      <td>7</td>\n",
+       "      <td>30000</td>\n",
+       "      <td>cc</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>4</td>\n",
+       "      <td>2009</td>\n",
+       "      <td>7</td>\n",
+       "      <td>40000</td>\n",
+       "      <td>cs</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>5</td>\n",
+       "      <td>2006</td>\n",
+       "      <td>8</td>\n",
+       "      <td>50000</td>\n",
+       "      <td>ec</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   employe id  year  experince  salary deparment\n",
+       "0           1  2000          9   10000        cc\n",
+       "1           2  2008          8   20000        cs\n",
+       "2           3  1098          7   30000        cc\n",
+       "3           4  2009          7   40000        cs\n",
+       "4           5  2006          8   50000        ec"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df['deparment']=['cc','cs','cc','cs','ec']\n",
+    "df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "fb4c6279-1cfc-426e-a783-d4deae4c06b0",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th>experince</th>\n",
+       "      <th>7</th>\n",
+       "      <th>8</th>\n",
+       "      <th>9</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>deparment</th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>cc</th>\n",
+       "      <td>30000.0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>10000.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>cs</th>\n",
+       "      <td>40000.0</td>\n",
+       "      <td>20000.0</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>ec</th>\n",
+       "      <td>NaN</td>\n",
+       "      <td>50000.0</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "experince        7        8        9\n",
+       "deparment                           \n",
+       "cc         30000.0      NaN  10000.0\n",
+       "cs         40000.0  20000.0      NaN\n",
+       "ec             NaN  50000.0      NaN"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "avg=df.pivot_table(values='salary',index='deparment',columns='experince',\n",
+    "                   aggfunc='mean')\n",
+    "avg"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "7bdcc778-accb-44ab-977c-21753def5640",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr:last-of-type th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th colspan=\"3\" halign=\"left\">mean</th>\n",
+       "      <th colspan=\"3\" halign=\"left\">sum</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>experince</th>\n",
+       "      <th>7</th>\n",
+       "      <th>8</th>\n",
+       "      <th>9</th>\n",
+       "      <th>7</th>\n",
+       "      <th>8</th>\n",
+       "      <th>9</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>deparment</th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>cc</th>\n",
+       "      <td>30000.0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>10000.0</td>\n",
+       "      <td>30000.0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>10000.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>cs</th>\n",
+       "      <td>40000.0</td>\n",
+       "      <td>20000.0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>40000.0</td>\n",
+       "      <td>20000.0</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>ec</th>\n",
+       "      <td>NaN</td>\n",
+       "      <td>50000.0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>50000.0</td>\n",
+       "      <td>NaN</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "              mean                        sum                  \n",
+       "experince        7        8        9        7        8        9\n",
+       "deparment                                                      \n",
+       "cc         30000.0      NaN  10000.0  30000.0      NaN  10000.0\n",
+       "cs         40000.0  20000.0      NaN  40000.0  20000.0      NaN\n",
+       "ec             NaN  50000.0      NaN      NaN  50000.0      NaN"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sum=df.pivot_table(values='salary',index='deparment',columns='experince', aggfunc=['mean','sum'])\n",
+    "sum"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "7025bdce-09fd-4cc8-911b-cf381a5c84a6",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array(['cc', 'cs', 'cc', 'cs', 'ec'], dtype=object)"
+      ]
+     },
+     "execution_count": 22,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df['deparment'].values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "8b5052e4-30b7-4d2c-a968-88894a7e19ca",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "AttributeError",
+     "evalue": "'DataFrame' object has no attribute 'gropby'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mAttributeError\u001b[0m                            Traceback (most recent call last)",
+      "\u001b[1;32m~\\AppData\\Local\\Temp\\ipykernel_11108\\4042496291.py\u001b[0m in \u001b[0;36m?\u001b[1;34m()\u001b[0m\n\u001b[1;32m----> 1\u001b[1;33m \u001b[0mdf\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mgropby\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'deparment'\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;34m'salary'\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mmean\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[1;32m~\\anaconda3\\Lib\\site-packages\\pandas\\core\\generic.py\u001b[0m in \u001b[0;36m?\u001b[1;34m(self, name)\u001b[0m\n\u001b[0;32m   6295\u001b[0m             \u001b[1;32mand\u001b[0m \u001b[0mname\u001b[0m \u001b[1;32mnot\u001b[0m \u001b[1;32min\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_accessors\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m   6296\u001b[0m             \u001b[1;32mand\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_info_axis\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_can_hold_identifiers_and_holds_name\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mname\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m   6297\u001b[0m         \u001b[1;33m)\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m   6298\u001b[0m             \u001b[1;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m[\u001b[0m\u001b[0mname\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m-> 6299\u001b[1;33m         \u001b[1;32mreturn\u001b[0m \u001b[0mobject\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m__getattribute__\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mself\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mname\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[1;31mAttributeError\u001b[0m: 'DataFrame' object has no attribute 'gropby'"
+     ]
+    }
+   ],
+   "source": [
+    "df.gropby['deparment']('salary').mean()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6af5774d-0bb2-4c3b-bd44-22d4b96cdaf6",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
